@@ -78,7 +78,6 @@ public class SpuImagesController {
     @PreAuthorize("hasAuthority('pms:spuimages:update')")
     public Resp<Object> update(@RequestBody SpuImagesEntity spuImages){
 		spuImagesService.updateById(spuImages);
-
         return Resp.ok(null);
     }
 

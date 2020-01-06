@@ -85,6 +85,7 @@ public class SpuInfoController {
     /**
      * 删除
      */
+
     @ApiOperation("删除")
     @PostMapping("/delete")
     @PreAuthorize("hasAuthority('pms:spuinfo:delete')")
