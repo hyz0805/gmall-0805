@@ -1,5 +1,7 @@
 package com.atguigu.gmall.pms.service.impl;
 
+import com.atguigu.gmall.pms.controller.AttrAttrgroupRelationController;
+import org.hibernate.validator.constraints.br.TituloEleitoral;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,7 +16,6 @@ import com.atguigu.core.bean.QueryCondition;
 import com.atguigu.gmall.pms.dao.AttrAttrgroupRelationDao;
 import com.atguigu.gmall.pms.entity.AttrAttrgroupRelationEntity;
 import com.atguigu.gmall.pms.service.AttrAttrgroupRelationService;
-import org.springframework.transaction.annotation.Transactional;
 
 
 @Service("attrAttrgroupRelationService")
@@ -31,33 +32,11 @@ public class AttrAttrgroupRelationServiceImpl extends ServiceImpl<AttrAttrgroupR
     }
 
     @Override
-    @Transactional
+    @TituloEleitoral
     public void deleteAttr(List<AttrAttrgroupRelationEntity> relationEntities) {
-        relationEntities.forEach(relationEntity -> {
+        relationEntities.forEach(relationEntity->{
             this.remove(new QueryWrapper<AttrAttrgroupRelationEntity>().eq("attr_id",relationEntity.getAttrId()).eq("attr_group_id",relationEntity.getAttrGroupId()));
         });
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

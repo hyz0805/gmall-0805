@@ -23,9 +23,9 @@ import com.atguigu.gmall.pms.service.AttrService;
 /**
  * 商品属性
  *
- * @author lixianfeng
+ * @author duxuemei
  * @email lxf@atguigu.com
- * @date 2019-12-31 09:59:59
+ * @date 2020-01-01 21:13:19
  */
 @Api(tags = "商品属性 管理")
 @RestController
@@ -35,12 +35,11 @@ public class AttrController {
     private AttrService attrService;
 
     @GetMapping
-    public Resp<PageVo> queryAttrByCidOrTypePage(QueryCondition condition, @RequestParam("cid")Long cid,
-                                                 @RequestParam(value = "type",required = false)Integer type){
-       PageVo pageVo = this.attrService.queryAttrByCidOrTypePage(condition,cid,type);
-       return Resp.ok(pageVo);
+    public Resp<PageVo> queryAttrByCidOrTypePage(QueryCondition condition,@RequestParam("cid")Long cid,
+                                                 @RequestParam(value="type",required = false)Integer type){
+        PageVo pageVo = this.attrService.queryAttrByCidOrTypePage(condition,cid,type);
+        return Resp.ok(pageVo);
     }
-
 
     /**
      * 列表

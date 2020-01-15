@@ -22,9 +22,9 @@ import com.atguigu.gmall.pms.service.SpuCommentService;
 /**
  * 商品评价
  *
- * @author lixianfeng
+ * @author duxuemei
  * @email lxf@atguigu.com
- * @date 2019-12-31 09:59:59
+ * @date 2020-01-01 21:13:19
  */
 @Api(tags = "商品评价 管理")
 @RestController

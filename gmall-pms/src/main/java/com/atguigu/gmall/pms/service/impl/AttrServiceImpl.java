@@ -20,9 +20,9 @@ import com.atguigu.gmall.pms.service.AttrService;
 
 @Service("attrService")
 public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements AttrService {
-
     @Autowired
     private AttrAttrgroupRelationDao relationDao;
+
 
     @Override
     public PageVo queryPage(QueryCondition params) {
@@ -36,17 +36,18 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
 
     @Override
     public PageVo queryAttrByCidOrTypePage(QueryCondition condition, Long cid, Integer type) {
+
         QueryWrapper<AttrEntity> wrapper = new QueryWrapper<>();
 
         //判断type是否为null
-        if (type != null) {
+        if(type !=null){
             wrapper.eq("attr_type",type);
         }
         wrapper.eq("catelog_id",cid);
 
+
         IPage<AttrEntity> page = this.page(
-                new Query<AttrEntity>().getPage(condition),
-                wrapper
+                new Query<AttrEntity>().getPage(condition)
 
         );
 
@@ -55,11 +56,9 @@ public class AttrServiceImpl extends ServiceImpl<AttrDao, AttrEntity> implements
 
     @Override
     public void saveAttrVO(AttrVO attrVO) {
-
         //新增attr
-        this.save(attrVO);
+        boolean save = this.save(attrVO);
         Long attrId = attrVO.getAttrId();
-
 
         //新增relation
         AttrAttrgroupRelationEntity relationEntity = new AttrAttrgroupRelationEntity();

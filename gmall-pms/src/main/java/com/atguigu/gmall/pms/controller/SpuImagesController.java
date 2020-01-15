@@ -22,9 +22,9 @@ import com.atguigu.gmall.pms.service.SpuImagesService;
 /**
  * spu图片
  *
- * @author lixianfeng
+ * @author duxuemei
  * @email lxf@atguigu.com
- * @date 2019-12-31 09:59:59
+ * @date 2020-01-01 21:13:19
  */
 @Api(tags = "spu图片 管理")
 @RestController
@@ -78,6 +78,7 @@ public class SpuImagesController {
     @PreAuthorize("hasAuthority('pms:spuimages:update')")
     public Resp<Object> update(@RequestBody SpuImagesEntity spuImages){
 		spuImagesService.updateById(spuImages);
+
         return Resp.ok(null);
     }
 

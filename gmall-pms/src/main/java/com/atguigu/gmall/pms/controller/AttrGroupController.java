@@ -1,6 +1,7 @@
 package com.atguigu.gmall.pms.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 
@@ -23,9 +24,9 @@ import com.atguigu.gmall.pms.service.AttrGroupService;
 /**
  * 属性分组
  *
- * @author lixianfeng
+ * @author duxuemei
  * @email lxf@atguigu.com
- * @date 2019-12-31 09:59:59
+ * @date 2020-01-01 21:13:19
  */
 @Api(tags = "属性分组 管理")
 @RestController
@@ -34,12 +35,17 @@ public class AttrGroupController {
     @Autowired
     private AttrGroupService attrGroupService;
 
+    @GetMapping("withattrs/cat/{catId}")
+    public Resp<List<GroupVO>> queryGroupVOSByCid(@PathVariable("catId")Long cid){
+        List<GroupVO> groupVOS = this.attrGroupService.queryGroupVOSByCid(cid);
+        return Resp.ok(groupVOS);
+    }
+
 
     @GetMapping("withattr/{gid}")
     public Resp<GroupVO> queryGroupVOByGid(@PathVariable("gid")Long gid){
         GroupVO groupVO = attrGroupService.queryGroupVOByGid(gid);
         return Resp.ok(groupVO);
-
     }
 
 
@@ -49,13 +55,6 @@ public class AttrGroupController {
 
         return Resp.ok(page);
     }
-
-
-
-
-
-
-
 
 
 

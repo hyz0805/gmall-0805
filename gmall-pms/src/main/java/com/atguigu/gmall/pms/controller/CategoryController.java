@@ -23,9 +23,9 @@ import com.atguigu.gmall.pms.service.CategoryService;
 /**
  * 商品三级分类
  *
- * @author lixianfeng
+ * @author duxuemei
  * @email lxf@atguigu.com
- * @date 2019-12-31 09:59:59
+ * @date 2020-01-01 21:13:19
  */
 @Api(tags = "商品三级分类 管理")
 @RestController
@@ -35,12 +35,15 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping
-    public Resp<List<CategoryEntity>> queryCategoriesByLevelOrPid(@RequestParam(value = "level",defaultValue = "0") Integer level,@RequestParam(value = "parentCid",required = false) Long pid){
+    public Resp<List<CategoryEntity>> queryCategoriesByLevelOrPid(@RequestParam(value = "level", defaultValue = "0") Integer level,@RequestParam(value="parentCid",required = false)Long pid){
 
-        List<CategoryEntity> categoryEntities = this.categoryService.queryCategoriesByLevelOrPid(level,pid);
 
-        return  Resp.ok(categoryEntities);
+        List<CategoryEntity> categoryEntities = this.categoryService.queryCategoriesByLevelOrPid(level, pid);
+            return Resp.ok(categoryEntities);
+
     }
+
+
     /**
      * 列表
      */

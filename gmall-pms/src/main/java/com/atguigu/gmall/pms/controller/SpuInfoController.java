@@ -1,5 +1,6 @@
 package com.atguigu.gmall.pms.controller;
 
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -7,6 +8,7 @@ import java.util.Map;
 import com.atguigu.core.bean.PageVo;
 import com.atguigu.core.bean.QueryCondition;
 import com.atguigu.core.bean.Resp;
+import com.atguigu.gmall.pms.vo.SpuInfoVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +24,9 @@ import com.atguigu.gmall.pms.service.SpuInfoService;
 /**
  * spu信息
  *
- * @author lixianfeng
+ * @author duxuemei
  * @email lxf@atguigu.com
- * @date 2019-12-31 09:59:59
+ * @date 2020-01-01 21:13:19
  */
 @Api(tags = "spu信息 管理")
 @RestController
@@ -32,6 +34,13 @@ import com.atguigu.gmall.pms.service.SpuInfoService;
 public class SpuInfoController {
     @Autowired
     private SpuInfoService spuInfoService;
+
+
+    @GetMapping
+    public Resp<PageVo>querySpuByCidOrKey(QueryCondition condition,@RequestParam(value = "catId",defaultValue = "0")Long catId){
+      PageVo pageVo = this.spuInfoService.querySpuByCidOrKey(condition,catId);
+        return Resp.ok(pageVo);
+    }
 
     /**
      * 列表
@@ -64,8 +73,8 @@ public class SpuInfoController {
     @ApiOperation("保存")
     @PostMapping("/save")
     @PreAuthorize("hasAuthority('pms:spuinfo:save')")
-    public Resp<Object> save(@RequestBody SpuInfoEntity spuInfo){
-		spuInfoService.save(spuInfo);
+    public Resp<Object> save(@RequestBody SpuInfoVO spuInfoVO) throws FileNotFoundException {
+		spuInfoService.bigSave(spuInfoVO);
 
         return Resp.ok(null);
     }
@@ -85,7 +94,6 @@ public class SpuInfoController {
     /**
      * 删除
      */
-
     @ApiOperation("删除")
     @PostMapping("/delete")
     @PreAuthorize("hasAuthority('pms:spuinfo:delete')")

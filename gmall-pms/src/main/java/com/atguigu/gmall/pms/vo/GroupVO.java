@@ -7,14 +7,11 @@ import lombok.Data;
 
 import java.util.List;
 
-/**
- * @author hyz
- * @create 2020-01-05 20:27
- */
 @Data
-public class GroupVO extends AttrGroupEntity {
+public class GroupVO extends AttrGroupEntity{
 
     private List<AttrEntity> attrEntities;
 
     private List<AttrAttrgroupRelationEntity> relations;
+
 }

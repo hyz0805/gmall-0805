@@ -11,9 +11,9 @@ import lombok.Data;
 /**
  * 商品属性
  * 
- * @author lixianfeng
+ * @author duxuemei
  * @email lxf@atguigu.com
- * @date 2019-12-31 09:59:59
+ * @date 2020-01-01 21:13:19
  */
 @ApiModel
 @Data

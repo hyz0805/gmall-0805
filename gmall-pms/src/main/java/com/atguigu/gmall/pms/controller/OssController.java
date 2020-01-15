@@ -1,6 +1,5 @@
 package com.atguigu.gmall.pms.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.common.utils.BinaryUtil;
 import com.aliyun.oss.model.MatchMode;
@@ -15,25 +14,20 @@ import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-/**
- * @author shkstart
- * @create 2020-01-05 13:27
- */
 @RestController
 @RequestMapping("pms/oss")
 public class OssController {
-
     @GetMapping("policy")
     public Resp<Object> policy(){
-        String accessId = "LTAI4FtgGt4vySwwKCNWnvkM"; // 请填写您的AccessKeyId。
-        String accessKey = "riW1kLgt6OkCcFTmuokj3JCB1sYGlh"; // 请填写您的AccessKeySecret。
+        String accessId = "LTAI4FqAtL8a3NxUj21ZakzU"; // 请填写您的AccessKeyId。
+        String accessKey = "1BpiNki6xhJ2BLJxQ18a5tkzlkTIip"; // 请填写您的AccessKeySecret。
         String endpoint = "oss-cn-beijing.aliyuncs.com"; // 请填写您的 endpoint。
-        String bucket = "hyzz"; // 请填写您的 bucketname 。
+        String bucket = "ggmall7"; // 请填写您的 bucketname 。
         String host = "https://" + bucket + "." + endpoint; // host的格式为 bucketname.endpoint
         // callbackUrl为 上传回调服务器的URL，请将下面的IP和Port配置为您自己的真实信息。
-//        String callbackUrl = "http://88.88.88.88:8888";
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd  ");
-        String dir = format.format(new Date());  // 用户上传文件时指定的前缀。
+        //String callbackUrl = "http://88.88.88.88:8888";
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        String dir =  format.format(new Date()); // 用户上传文件时指定的前缀。
 
         OSSClient client = new OSSClient(endpoint, accessId, accessKey);
         try {
@@ -58,8 +52,7 @@ public class OssController {
             respMap.put("expire", String.valueOf(expireEndTime / 1000));
             // respMap.put("expire", formatISO8601Date(expiration));
 
-            return  Resp.ok(respMap);
-
+            return Resp.ok(respMap);
         } catch (Exception e) {
             // Assert.fail(e.getMessage());
             System.out.println(e.getMessage());
